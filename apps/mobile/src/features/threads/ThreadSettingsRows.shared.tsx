@@ -53,7 +53,9 @@ export function ModelRowContent(
       )}
     >
       <Pressable
-        accessibilityLabel={[props.option.label, props.option.subtitle].filter(Boolean).join(", ")}
+        accessibilityLabel={[props.option.label, props.option.subtitle, props.option.description]
+          .filter(Boolean)
+          .join(", ")}
         accessibilityRole="radio"
         accessibilityState={{
           checked: props.selected,
@@ -97,12 +99,12 @@ export function ModelRowContent(
               </Text>
             ) : null}
           </View>
-          {props.option.subtitle ? (
+          {props.option.subtitle || props.option.description ? (
             <Text
               className="text-xs text-foreground-muted"
               numberOfLines={props.labelNumberOfLines}
             >
-              {props.option.subtitle}
+              {[props.option.subtitle, props.option.description].filter(Boolean).join(" · ")}
             </Text>
           ) : null}
         </View>
